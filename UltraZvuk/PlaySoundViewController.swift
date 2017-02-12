@@ -16,7 +16,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     var recordedSoundURL: URL!
     var soundFile: AVAudioFile!
     var soundEngine: AVAudioEngine!
-    var soundPlayerNode: AVAudioNode!
+    var soundPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
     
     

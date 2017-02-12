@@ -42,7 +42,6 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         if let pitch = pitch {
             soundChangeTimePitchNode.pitch = pitch
         }
-        
         soundEngine.attach(soundChangeTimePitchNode)
         
         
@@ -59,24 +58,70 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         soundEngine.attach(soundChangeReverbNode)
         
         
+        // Connect audio nodes
+        if echo == true {
+            connectAudioNodes([soundPlayerNode, soundChangeEchoNode, soundEngine.outputNode])
+        } else if reverb == true {
+            connectAudioNodes([soundPlayerNode, soundChangeReverbNode, soundEngine.outputNode])
+        } else {
+            connectAudioNodes([soundPlayerNode, soundChangeTimePitchNode, soundEngine.outputNode])
+        }
         
         
+        // Schedule to play and to start the engine
+        soundPlayerNode.stop()
+        soundPlayerNode.scheduleFile(soundFile, at: nil) {
+            
+            var delayInSeconds: Double = 0
+            
+            if let lastRenderTime = self.soundPlayerNode.lastRenderTime, let playerTime = self.soundPlayerNode.playerTime(forNodeTime: lastRenderTime) {
+                
+                delayInSeconds = Double(self.soundFile.length - playerTime.sampleTime) / Double(self.soundFile.processingFormat.sampleRate) / Double(rate ?? 1)
+            }
+            
+            self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundViewController.stopSound), userInfo: nil, repeats: false)
+            RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+        }
         
+        do {
+            try soundEngine.start()
+        } catch {
+            showAlert(forVC: self, withTitle: "AudioEngineError", andMessage: "Audio Engine Error!")
+        }
+        
+        
+        // Play the recording
+        soundPlayerNode.play()
     }
     
-    
-    
-    
+    func stopSound() {
+        
+        // Stop playing sound
+        if let soundPlayerNode = soundPlayerNode {
+            soundPlayerNode.stop()
+        }
+        
+        
+        // Deactivate stop timer and remove it from Run loop
+        if let stopTimer = stopTimer {
+            stopTimer.invalidate()
+        }
+        
+        
+        // Stop & reset audio engine
+        if let soundEngine = soundEngine {
+            soundEngine.stop()
+            soundEngine.reset()
+        }
+    }
     
     
     // MARK: Aux functions
     
+    // Connecting array of audio nodes
     func connectAudioNodes(_ nodes: [AVAudioNode]) {
         for i in 0..<nodes.count-1 {
             soundEngine.connect(nodes[i], to: nodes[i+1], format: soundFile.processingFormat)
         }
     }
-    
-    
-    
 }
