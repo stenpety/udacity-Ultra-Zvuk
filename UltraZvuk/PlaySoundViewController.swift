@@ -61,7 +61,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
         case .slow:
             playSound(rate: 0.25)
         case .fast:
-            playSound(rate: 2.5)
+            playSound(rate: 2.0)
         case .chipmunk:
             playSound(pitch: 1000)
         case .vader:
@@ -75,7 +75,6 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     
     
     @IBAction func stopPlaySound(_ sender: Any) {
-        playUISetup(forState: .notPlaying)
         stopSound()
     }
     
@@ -92,12 +91,4 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
         for buttonOutlet in playButtons {buttonOutlet?.isEnabled = (state == .notPlaying)}
         stopPlaySoundButton.isEnabled = (state == .playing)
     }
-    
-    
-
-    
-    
-    
-    
-    
 }

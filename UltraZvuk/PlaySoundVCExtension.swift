@@ -47,7 +47,7 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         
         // Node for adding Echo effect
         let soundChangeEchoNode = AVAudioUnitDistortion()
-        soundChangeEchoNode.loadFactoryPreset(.multiEcho2)
+        soundChangeEchoNode.loadFactoryPreset(.multiEcho1)
         soundEngine.attach(soundChangeEchoNode)
         
         
@@ -79,6 +79,7 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
                 delayInSeconds = Double(self.soundFile.length - playerTime.sampleTime) / Double(self.soundFile.processingFormat.sampleRate) / Double(rate ?? 1)
             }
             
+            // Schedule a stop timer for when audio finishes playing
             self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundViewController.stopSound), userInfo: nil, repeats: false)
             RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
         }
@@ -107,6 +108,8 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
             stopTimer.invalidate()
         }
         
+        // Configure UI
+        playUISetup(forState: .notPlaying)
         
         // Stop & reset audio engine
         if let soundEngine = soundEngine {
