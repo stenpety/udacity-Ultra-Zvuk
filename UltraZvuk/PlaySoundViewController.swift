@@ -16,7 +16,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     var recordedSoundURL: URL!
     var soundFile: AVAudioFile!
     var soundEngine: AVAudioEngine!
-    var soundEngineNode: AVAudioNode!
+    var soundPlayerNode: AVAudioNode!
     var stopTimer: Timer!
     
     
@@ -32,11 +32,11 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     
     
     
-    //MARK: Initial view setup
+    //MARK: Initial setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupAudio()
     }
     
     override func viewWillAppear(_ animated: Bool) {
