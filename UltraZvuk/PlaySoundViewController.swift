@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PlaySoundViewController: UIViewController {
+    
+    //MARK: properties to handle audio stuff
+    
+    var recordedSoundURL: URL?
+    var soundFile: AVAudioFile?
+    var soundEngine: AVAudioEngine?
+    var soundEngineNode: AVAudioNode?
+    var stopTimer: Timer?
+    
     
     //MARK: Outlets for buttons
     
@@ -38,9 +48,11 @@ class PlaySoundViewController: UIViewController {
     
     //MARK: Actions
     
-    @IBAction func playSoundForButton(_ sender: Any) {
+    @IBAction func playSoundForButton(_ sender: UIButton) {
         playUISetup(forState: .playing)
+        
     }
+    
     
     @IBAction func stopPlaySound(_ sender: Any) {
         playUISetup(forState: .notPlaying)
