@@ -11,8 +11,9 @@ import AVFoundation
 
 class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     
-    //MARK: properties to handle audio stuff
+    //MARK: Properties, outlets, enums
     
+    // Properties to handle audio stuff
     var recordedSoundURL: URL!
     var soundFile: AVAudioFile!
     var soundEngine: AVAudioEngine!
@@ -20,8 +21,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     var stopTimer: Timer!
     
     
-    //MARK: Outlets for buttons
-    
+    //Outlets for buttons
     @IBOutlet weak var playSoundSlowButton: UIButton!
     @IBOutlet weak var playSoundFastButton: UIButton!
     @IBOutlet weak var playSoundHighPitchButton: UIButton!
@@ -29,6 +29,12 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     @IBOutlet weak var playSoundEchoButton: UIButton!
     @IBOutlet weak var playSoundReverbButton: UIButton!
     @IBOutlet weak var stopPlaySoundButton: UIButton!
+    
+    
+    //Aux enums
+    enum ButtonType: Int {
+        case slow = 0, fast, chipmunk, vader, echo, reverb
+    }
     
     
     
@@ -51,11 +57,26 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     @IBAction func playSoundForButton(_ sender: UIButton) {
         playUISetup(forState: .playing)
         
+        switch ButtonType(rawValue: sender.tag)! {
+        case .slow:
+            playSound(rate: 0.25)
+        case .fast:
+            playSound(rate: 2.5)
+        case .chipmunk:
+            playSound(pitch: 1000)
+        case .vader:
+            playSound(pitch: -1000)
+        case .echo:
+            playSound(echo: true)
+        case .reverb:
+            playSound(reverb: true)
+        }
     }
     
     
     @IBAction func stopPlaySound(_ sender: Any) {
         playUISetup(forState: .notPlaying)
+        stopSound()
     }
     
     
