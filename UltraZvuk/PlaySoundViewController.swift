@@ -9,15 +9,15 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundViewController: UIViewController {
+class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     
     //MARK: properties to handle audio stuff
     
-    var recordedSoundURL: URL?
-    var soundFile: AVAudioFile?
-    var soundEngine: AVAudioEngine?
-    var soundEngineNode: AVAudioNode?
-    var stopTimer: Timer?
+    var recordedSoundURL: URL!
+    var soundFile: AVAudioFile!
+    var soundEngine: AVAudioEngine!
+    var soundEngineNode: AVAudioNode!
+    var stopTimer: Timer!
     
     
     //MARK: Outlets for buttons

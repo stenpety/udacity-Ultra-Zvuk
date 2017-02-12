@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
+class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate, AlertsForUltraZvuk {
     
     //MARK: Initial view setup
     
@@ -75,7 +75,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         if flag {
             performSegue(withIdentifier: "segueToPlaySoundVC", sender: soundRecorder.url)
         } else {
-            showAlert(withTitle: "Warning!", andMessage: "Recording was NOT successful")
+            showAlert(forVC: self, withTitle: "Warning!", andMessage: "Recording was NOT successful")
         }
     }
     
@@ -103,13 +103,5 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         stopRecordButton.isEnabled = (state == .recording)
         recordStatusLabel.text = (state == .recording ? "Record in progress" : "Tap to record")
     }
-    
-    func showAlert(withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
 }
 

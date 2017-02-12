@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2C8F401E505AFC000FB2CF /* PlaySoundVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C8F3F1E505AFC000FB2CF /* PlaySoundVCExtension.swift */; };
+		1A2C8F421E506389000FB2CF /* AlertsProtocolWithExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C8F411E506389000FB2CF /* AlertsProtocolWithExt.swift */; };
 		1A5740071E4F615600735DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5740061E4F615600735DFE /* Assets.xcassets */; };
 		1AA7E2D81E4F493500DAFBA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7E2D71E4F493500DAFBA7 /* AppDelegate.swift */; };
 		1AA7E2DA1E4F493500DAFBA7 /* RecordSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7E2D91E4F493500DAFBA7 /* RecordSoundViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A2C8F3F1E505AFC000FB2CF /* PlaySoundVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundVCExtension.swift; sourceTree = "<group>"; };
+		1A2C8F411E506389000FB2CF /* AlertsProtocolWithExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsProtocolWithExt.swift; sourceTree = "<group>"; };
 		1A5740061E4F615600735DFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AA7E2D41E4F493500DAFBA7 /* UltraZvuk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UltraZvuk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA7E2D71E4F493500DAFBA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				1AA7E2D71E4F493500DAFBA7 /* AppDelegate.swift */,
 				1AA7E2D91E4F493500DAFBA7 /* RecordSoundViewController.swift */,
 				1AA7E2E91E4F4A2200DAFBA7 /* PlaySoundViewController.swift */,
+				1A2C8F3F1E505AFC000FB2CF /* PlaySoundVCExtension.swift */,
+				1A2C8F411E506389000FB2CF /* AlertsProtocolWithExt.swift */,
 				1AA7E2DB1E4F493500DAFBA7 /* Main.storyboard */,
 				1AA7E2E01E4F493500DAFBA7 /* LaunchScreen.storyboard */,
 				1A5740061E4F615600735DFE /* Assets.xcassets */,
@@ -142,6 +148,8 @@
 			files = (
 				1AA7E2DA1E4F493500DAFBA7 /* RecordSoundViewController.swift in Sources */,
 				1AA7E2EA1E4F4A2200DAFBA7 /* PlaySoundViewController.swift in Sources */,
+				1A2C8F401E505AFC000FB2CF /* PlaySoundVCExtension.swift in Sources */,
+				1A2C8F421E506389000FB2CF /* AlertsProtocolWithExt.swift in Sources */,
 				1AA7E2D81E4F493500DAFBA7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
