@@ -11,7 +11,7 @@ import AVFoundation
 
 class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     
-    //MARK: Properties, outlets, enums
+    //MARK: Properties, outlets, enums, constants
     
     // Properties to handle audio stuff
     var recordedSoundURL: URL!
@@ -20,8 +20,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     var soundPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
     
-    
-    //Outlets for buttons
+    // Outlets for buttons
     @IBOutlet weak var playSoundSlowButton: UIButton!
     @IBOutlet weak var playSoundFastButton: UIButton!
     @IBOutlet weak var playSoundHighPitchButton: UIButton!
@@ -30,11 +29,17 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     @IBOutlet weak var playSoundReverbButton: UIButton!
     @IBOutlet weak var stopPlaySoundButton: UIButton!
     
-    
-    //Aux enums
+    // Aux enums
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
     }
+    
+    // Class constants for adjusting audio
+    static let SOUND_LOW_RATE: Float = 0.25
+    static let SOUND_HIGH_RATE: Float = 2.0
+    static let SOUND_LOW_PITCH: Float = -1000
+    static let SOUND_HIGH_PITCH: Float = 1000
+    
     
     
     
@@ -59,13 +64,13 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
         
         switch ButtonType(rawValue: sender.tag)! {
         case .slow:
-            playSound(rate: 0.25)
+            playSound(rate: PlaySoundViewController.SOUND_LOW_RATE)
         case .fast:
-            playSound(rate: 2.0)
+            playSound(rate: PlaySoundViewController.SOUND_HIGH_RATE)
         case .chipmunk:
-            playSound(pitch: 1000)
+            playSound(pitch: PlaySoundViewController.SOUND_HIGH_PITCH)
         case .vader:
-            playSound(pitch: -1000)
+            playSound(pitch: PlaySoundViewController.SOUND_LOW_PITCH)
         case .echo:
             playSound(echo: true)
         case .reverb:
