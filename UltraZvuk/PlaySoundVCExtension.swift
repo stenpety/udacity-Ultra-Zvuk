@@ -12,7 +12,6 @@ import AVFoundation
 extension PlaySoundViewController: AVAudioPlayerDelegate {
     
     // MARK: Setup audio function - trying to assign soundFile to obtained URL
-    
     func setupAudio() {
         do {
             soundFile = try AVAudioFile(forReading: recordedSoundURL)
@@ -31,7 +30,6 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         soundPlayerNode = AVAudioPlayerNode()
         soundEngine.attach(soundPlayerNode)
         
-        
         // Node for adjustinf time/pitch
         let soundChangeTimePitchNode = AVAudioUnitTimePitch()
         
@@ -44,19 +42,16 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         }
         soundEngine.attach(soundChangeTimePitchNode)
         
-        
         // Node for adding Echo effect
         let soundChangeEchoNode = AVAudioUnitDistortion()
         soundChangeEchoNode.loadFactoryPreset(.multiEcho1)
         soundEngine.attach(soundChangeEchoNode)
-        
         
         // Node for adding Reverb effect
         let soundChangeReverbNode = AVAudioUnitReverb()
         soundChangeReverbNode.loadFactoryPreset(.largeRoom2)
         soundChangeReverbNode.wetDryMix = 50
         soundEngine.attach(soundChangeReverbNode)
-        
         
         // Connect audio nodes
         if echo == true {
@@ -66,7 +61,6 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         } else {
             connectAudioNodes([soundPlayerNode, soundChangeTimePitchNode, soundEngine.outputNode])
         }
-        
         
         // Schedule to play and to start the engine
         soundPlayerNode.stop()
@@ -118,9 +112,7 @@ extension PlaySoundViewController: AVAudioPlayerDelegate {
         }
     }
     
-    
     // MARK: Aux functions
-    
     // Connecting array of audio nodes
     func connectAudioNodes(_ nodes: [AVAudioNode]) {
         for i in 0..<nodes.count-1 {

@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol AlertsForUltraZvuk {
-    func showAlert(forVC VC: UIViewController, withTitle title: String, andMessage message: String)
-}
-
-extension AlertsForUltraZvuk {
+extension UIViewController {
     
     func showAlert(forVC VC: UIViewController, withTitle title: String, andMessage message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

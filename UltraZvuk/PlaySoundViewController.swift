@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
+class PlaySoundViewController: UIViewController {
     
     //MARK: Properties, outlets, enums, constants
     
@@ -40,11 +40,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
     static let SOUND_LOW_PITCH: Float = -1000
     static let SOUND_HIGH_PITCH: Float = 1000
     
-    
-    
-    
     //MARK: Initial setup
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
@@ -55,10 +51,7 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
         playUISetup(forState: .notPlaying)
     }
     
-    
-    
     //MARK: Actions
-    
     @IBAction func playSoundForButton(_ sender: UIButton) {
         playUISetup(forState: .playing)
         
@@ -78,15 +71,11 @@ class PlaySoundViewController: UIViewController, AlertsForUltraZvuk {
         }
     }
     
-    
     @IBAction func stopPlaySound(_ sender: Any) {
         stopSound()
     }
     
-    
-    
     //MARK: UI setup
-    
     enum playState {
         case playing, notPlaying
     }

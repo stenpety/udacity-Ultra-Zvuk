@@ -9,30 +9,23 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate, AlertsForUltraZvuk {
+class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     
     //MARK: Initial view setup
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         recordUISetup(forState: .notRecording)
     }
     
-    
-    
     //MARK: Outlets for buttons/label
-    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordButton: UIButton!
     @IBOutlet weak var recordStatusLabel: UILabel!
     
-    
     // Init an instance of AVAudioRecorder
     var soundRecorder: AVAudioRecorder!
     
-    
     //MARK: Actions
-    
     @IBAction func recordSound(_ sender: Any) {
         // Setuo UI for Recording state
         recordUISetup(forState: .recording)
@@ -67,10 +60,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate, Aler
         try! audioSession.setActive(false)
     }
     
-    
-    
     //MARK: Delegate functions
-    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             performSegue(withIdentifier: "segueToPlaySoundVC", sender: soundRecorder.url)
@@ -79,19 +69,13 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate, Aler
         }
     }
     
-    
-    
     //MARK: Prepare for segue to PlaySoundVC
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToPlaySoundVC" {
             let playSoundVC = segue.destination as! PlaySoundViewController // Forced downcast from any VC to a specific VC
             playSoundVC.recordedSoundURL = (sender as! URL) // Forced downcast from Any? to URL
         }
     }
-    
-    
-    
     
     //MARK: UI configuration
     enum recordState {
